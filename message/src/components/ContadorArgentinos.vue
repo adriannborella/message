@@ -1,51 +1,53 @@
 <template>
     <div class="contenedor">
         <div class="titulo">¡¡¡YA LLEGAN<br>LOS ARGENTINOS!!!</div>
-        <div class="fila"><span class="numero">{{ dias }}</span><span class="etiqueta">DÍAS</span></div>
-        <div class="fila"><span class="numero">{{ horas }}:{{ minutos }}:{{ segundos }}</span></div>
+        <div v-if="dias > 0">
+            <div class="fila"><span class="numero">{{ dias }}</span><span class="etiqueta">DÍAS</span></div>
+            <div class="fila"><span class="numero">{{ horas }}:{{ minutos }}:{{ segundos }}</span></div>
+        </div>
+        <div v-else-if="dias === 0">
+            <div class="fila"></div>
+            <img src="/plane.avif" alt="Plane" class="plane-image" />
+            <br />
+            <span class="etiqueta">VIAJANDO</span>
+        </div>
+        <div v-else>
+            <div class="fila">
+                <span class="etiqueta">DISFRUTANDO COLOMBIA</span>
+            </div>
+            <div class="fila">
+                <a href="https://photos.app.goo.gl/M9rtxq2txrPoQ4YQ8" target="_blank" class="boton etiqueta">
+                    ¡Sube tus fotos con nosotros aquí!
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'ContadorArgentinos',
-    data() {
-        return {
-            tiempoRestante: 0,
-            objetivo: new Date("2025-05-31T00:00:00"),
-        };
-    },
-    computed: {
-        dias() {
-            return Math.floor(this.tiempoRestante / (1000 * 60 * 60 * 24));
-        },
-        horas() {
-            return String(Math.floor((this.tiempoRestante / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-        },
-        minutos() {
-            return String(Math.floor((this.tiempoRestante / (1000 * 60)) % 60)).padStart(2, '0');
-        },
-        segundos() {
-            return String(Math.floor((this.tiempoRestante / 1000) % 60)).padStart(2, '0');
-        }
-    },
-    methods: {
-        actualizarContador() {
-            const ahora = new Date();
-            const diff = this.objetivo - ahora;
-            this.tiempoRestante = diff > 0 ? diff : 0;
-        }
-    },
-    mounted() {
-        this.actualizarContador();
-        setInterval(this.actualizarContador, 1000);
-    }
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+
+const tiempoRestante = ref(0);
+const objetivo = new Date("2025-05-31T09:00:00");
+
+const dias = computed(() => Math.floor(tiempoRestante.value / (1000 * 60 * 60 * 24)));
+const horas = computed(() => String(Math.floor((tiempoRestante.value / (1000 * 60 * 60)) % 24)).padStart(2, '0'));
+const minutos = computed(() => String(Math.floor((tiempoRestante.value / (1000 * 60)) % 60)).padStart(2, '0'));
+const segundos = computed(() => String(Math.floor((tiempoRestante.value / 1000) % 60)).padStart(2, '0'));
+
+const actualizarContador = () => {
+    const ahora = new Date();
+    const diff = objetivo - ahora;
+    tiempoRestante.value = diff;
 };
+
+onMounted(() => {
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+});
 </script>
 
 <style scoped>
-
-
 .contenedor {
     background-color: #b30000;
     color: white;
@@ -84,6 +86,24 @@ export default {
     font-size: 13vw;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.boton {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #b30000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #b30000;
+    transition: background-color 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+.boton:hover {
+    background-color: #b30000;
+    color: #ffffff;
 }
 
 @media (min-width: 768px) {
