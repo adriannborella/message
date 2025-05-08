@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta Regresiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #b30000;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .linea1 {
+      font-size: 7vw;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .linea2 {
+      font-size: 40vw;
+      font-weight: bold;
+      line-height: 1;
+      margin: 20px 0;
+    }
+
+    .linea3 {
+      font-size: 8vw;
+      font-weight: bold;
+      text-transform: uppercase;
+      max-width: 90%;
+    }
+
+    @media (min-width: 768px) {
+      .linea1 {
+        font-size: 5vw;
+      }
+
+      .linea2 {
+        font-size: 35vw;
+      }
+
+      .linea3 {
+        font-size: 4vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="linea1">FALTAN</div>
+  <div class="linea2"><span id="dias">0 </span></div>
+  <div class="linea3">DÍAS PARA QUE UNA PAREJA DE ARGENTINOS SE REENCUENTRE CON LOS COLOMBIANOS</div>
+
+  <script>
+    function actualizarDias() {
+      const hoy = new Date();
+      const objetivo = new Date('2025-05-31T00:00:00');
+      const diferencia = objetivo - hoy;
+      const dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+      document.getElementById("dias").textContent = dias;
+    }
+
+    actualizarDias();
+    setInterval(actualizarDias, 1000 * 60 * 60); // Actualiza cada hora
+  </script>
+</body>
+</html>
