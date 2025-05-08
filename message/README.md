@@ -1,29 +1,33 @@
-# message
+# Proyecto: Mensaje estilo Crónica TV
 
-This template should help get you started developing with Vue 3 in Vite.
+## Descripción
+Este es un proyecto que muestra un mensaje con el estilo de Crónica TV y un contador que cuenta hasta una fecha fija. Es ideal para eventos, recordatorios o cualquier situación donde se necesite un contador visual con un diseño llamativo.
 
-## Recommended IDE Setup
+## Tecnología utilizada
+El proyecto está desarrollado utilizando **Vue.js**, un framework progresivo de JavaScript para construir interfaces de usuario.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Comandos para iniciar el proyecto
 
-## Customize configuration
+1. Clonar el repositorio:
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    cd html_project/message
+    ```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+2. Instalar las dependencias:
+    ```bash
+    npm install
+    ```
 
-## Project Setup
+3. Iniciar el servidor de desarrollo:
+    ```bash
+    npm run serve
+    ```
 
-```sh
-npm install
-```
+4. Abrir el proyecto en el navegador:
+    Visita `http://localhost:8080` para ver el proyecto en acción.
 
-### Compile and Hot-Reload for Development
+## Requisitos previos
+- Node.js y npm instalados en tu sistema.
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+¡Disfruta del proyecto!
