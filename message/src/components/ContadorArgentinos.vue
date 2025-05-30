@@ -28,7 +28,7 @@
 import { ref, computed, onMounted } from 'vue';
 
 const tiempoRestante = ref(0);
-const objetivo = new Date("2025-05-31T09:00:00");
+const objetivo = new Date("2025-05-31T21:00:00");
 
 const dias = computed(() => Math.floor(tiempoRestante.value / (1000 * 60 * 60 * 24)));
 const horas = computed(() => String(Math.floor((tiempoRestante.value / (1000 * 60 * 60)) % 24)).padStart(2, '0'));
